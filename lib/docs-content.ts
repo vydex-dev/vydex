@@ -79,6 +79,17 @@ The token is saved to \`~/.vydex.json\` (or pass \`VYDEX_TOKEN\`).
 ## 3. Push
 Run inside a git repo with at least one commit. It uploads \`git archive HEAD\` — your tracked files at the current commit.
 
+**Folder isn't a git repo yet?** One-time setup (this is also the fix for the "No git commit found here" error):
+
+\`\`\`bash
+cd my-project
+git init
+git add -A
+git commit -m "init"
+\`\`\`
+
+Then push:
+
 \`\`\`bash
 # new draft
 vydex push --title "Analytics dashboard"
@@ -90,7 +101,9 @@ vydex push --title "Pro UI kit" --paid --price 29
 vydex push --repo <repository-id> --message "fix auth"
 \`\`\`
 
-The command prints the draft URL — open it to set a price and publish. Tokens can be revoked any time on the same settings page.`,
+The command prints the draft URL — open it to add a description, screenshots and tags, then publish. Tokens can be revoked any time on the same settings page.
+
+**Good to know:** only *committed* files are uploaded (that's the point — you always publish an exact commit), and \`.gitignore\`d files like \`node_modules\` are never included.`,
   },
 
   'wallet': {

@@ -44,6 +44,16 @@ The token is saved to `~/.vydex.json` (you can also pass `VYDEX_TOKEN=…`).
 Run inside a git repo with at least one commit. It uploads `git archive HEAD`
 (your tracked files at the current commit).
 
+**Folder isn't a git repo yet?** One-time setup (also the fix for the
+"No git commit found here" error):
+
+```bash
+cd my-project
+git init
+git add -A
+git commit -m "init"
+```
+
 ```bash
 # create a new draft
 vydex push --title "Analytics dashboard"
