@@ -164,6 +164,16 @@ export function ListingView({ id }: { id: string }) {
   // Internal balance — enables a "pay with balance" option when it covers the price.
   const [balanceCents, setBalanceCents] = useState<number | null>(null)
   const [balancePaying, setBalancePaying] = useState(false)
+  // Screenshot lightbox — index into preview_images, or null when closed.
+  const [lightbox, setLightbox] = useState<number | null>(null)
+
+  // Close the lightbox on Escape.
+  useEffect(() => {
+    if (lightbox === null) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightbox])
 
   // Count a view — once per session per repo, but never count the owner viewing
   // their own listing. Runs after the repo loads so the owner is known.
@@ -741,17 +751,65 @@ export function ListingView({ id }: { id: string }) {
                 {(repo.preview_images?.length ?? 0) > 0 && (
                   <div className="grid gap-3 sm:grid-cols-2">
                     {repo.preview_images!.map((url, i) => (
-                      <a
+                      <button
                         key={i}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative block aspect-video overflow-hidden border-2 border-border bg-secondary transition-colors hover:border-primary"
+                        type="button"
+                        onClick={() => setLightbox(i)}
+                        aria-label={`Open preview ${i + 1}`}
+                        className="relative block aspect-video cursor-zoom-in overflow-hidden border-2 border-border bg-secondary transition-colors hover:border-primary"
                       >
                         <Image src={url} alt={`${repo.title} preview ${i + 1}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
-                      </a>
+                      </button>
                     ))}
                   </div>
+                )}
+              </div>
+            )}
+
+            {/* Screenshot lightbox — opens on the page, no new tab */}
+            {lightbox !== null && repo.preview_images?.[lightbox] && (
+              <div
+                className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 sm:p-10"
+                onClick={() => setLightbox(null)}
+                role="dialog"
+                aria-modal="true"
+              >
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={() => setLightbox(null)}
+                  className="absolute right-4 top-4 grid h-9 w-9 place-items-center border-2 border-border bg-card font-mono text-lg text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+                >×</button>
+
+                {repo.preview_images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      aria-label="Previous"
+                      onClick={(e) => { e.stopPropagation(); setLightbox((i) => i === null ? i : (i - 1 + repo.preview_images!.length) % repo.preview_images!.length) }}
+                      className="absolute left-4 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center border-2 border-border bg-card font-mono text-xl text-foreground transition-colors hover:border-primary"
+                    >‹</button>
+                    <button
+                      type="button"
+                      aria-label="Next"
+                      onClick={(e) => { e.stopPropagation(); setLightbox((i) => i === null ? i : (i + 1) % repo.preview_images!.length) }}
+                      className="absolute right-4 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center border-2 border-border bg-card font-mono text-xl text-foreground transition-colors hover:border-primary"
+                    >›</button>
+                  </>
+                )}
+
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={repo.preview_images[lightbox]}
+                  alt={`${repo.title} preview ${lightbox + 1}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="max-h-full max-w-full cursor-default border-2 border-border object-contain"
+                />
+
+                {repo.preview_images.length > 1 && (
+                  <span className="absolute bottom-4 left-1/2 -translate-x-1/2 font-mono text-[10px] text-muted-foreground">
+                    {lightbox + 1} / {repo.preview_images.length}
+                  </span>
                 )}
               </div>
             )}

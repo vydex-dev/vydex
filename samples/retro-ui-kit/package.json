@@ -1,8 +1,0 @@
-{
-  "name": "retro-ui-kit",
-  "version": "1.0.0",
-  "description": "Pixel-flavored UI components in pure CSS — buttons, cards, forms, badges, toggle, progress, alerts, tooltip, table. One file, themeable with variables.",
-  "private": true,
-  "keywords": ["css", "ui-kit", "components", "retro", "pixel", "design-system"],
-  "license": "MIT"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "json-toolbox",
-  "version": "1.0.0",
-  "description": "Format, validate and minify JSON entirely in the browser — with line:column error positions and structure stats.",
-  "private": true,
-  "keywords": ["json", "formatter", "validator", "minify", "devtools"],
-  "license": "MIT"
-}

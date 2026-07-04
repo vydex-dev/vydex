@@ -1,8 +1,0 @@
-{
-  "name": "launch-landing-template",
-  "version": "1.0.0",
-  "description": "Product landing page template: hero, features, pricing, FAQ — two static files, four theme variables, no build step.",
-  "private": true,
-  "keywords": ["landing-page", "template", "html", "css", "startup", "no-framework"],
-  "license": "MIT"
-}

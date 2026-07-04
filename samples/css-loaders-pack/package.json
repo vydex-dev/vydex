@@ -1,8 +1,0 @@
-{
-  "name": "css-loaders-pack",
-  "version": "1.0.0",
-  "description": "8 dependency-free CSS loading spinners — one file, one element each, size & color via variables.",
-  "private": true,
-  "keywords": ["css", "loaders", "spinners", "loading", "animation"],
-  "license": "MIT"
-}
