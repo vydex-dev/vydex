@@ -1,0 +1,8 @@
+{
+  "name": "markdown-notes",
+  "version": "1.0.0",
+  "description": "Local-first markdown notes app with live preview and .md export. Zero dependencies.",
+  "private": true,
+  "keywords": ["notes", "markdown", "local-first", "vanilla-js", "productivity"],
+  "license": "MIT"
+}

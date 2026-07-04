@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JSON Toolbox</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <h1>JSON Toolbox</h1>
+        <p>Format · validate · minify — locally, nothing leaves your browser.</p>
+      </header>
+
+      <div class="actions">
+        <button id="format" class="btn primary">Format</button>
+        <button id="minify" class="btn">Minify</button>
+        <button id="copy" class="btn">Copy</button>
+        <button id="sample" class="btn ghost">Sample</button>
+        <button id="clear" class="btn ghost">Clear</button>
+      </div>
+
+      <div id="status" class="status" hidden></div>
+
+      <textarea id="input" spellcheck="false" placeholder='Paste JSON here… e.g. {"hello":"world"}'></textarea>
+
+      <footer id="meta" class="meta"></footer>
+    </main>
+    <script src="tool.js"></script>
+  </body>
+</html>

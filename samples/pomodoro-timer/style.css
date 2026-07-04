@@ -1,0 +1,75 @@
+:root {
+  --bg: #100f14;
+  --card: #17161d;
+  --border: #2a2833;
+  --fg: #f0eef5;
+  --muted: #9a95ab;
+  --focus: #ff6b6b;
+  --break: #6bd0ff;
+}
+
+* { margin: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-monospace, "Cascadia Code", "Courier New", monospace;
+  transition: background 0.3s;
+}
+body[data-mode="short"], body[data-mode="long"] { --focus: var(--break); }
+
+.card {
+  width: min(92vw, 380px);
+  border: 2px solid var(--border);
+  background: var(--card);
+  padding: 28px;
+  text-align: center;
+}
+
+.modes { display: flex; gap: 6px; justify-content: center; }
+.mode {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.mode.active { color: var(--focus); border-color: var(--focus); }
+
+.time {
+  font-size: clamp(3.5rem, 18vw, 5.5rem);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+  margin: 18px 0 10px;
+  color: var(--focus);
+}
+
+.ring { height: 6px; background: var(--border); overflow: hidden; }
+.bar { height: 100%; width: 0; background: var(--focus); transition: width 1s linear; }
+
+.controls { display: flex; gap: 8px; justify-content: center; margin-top: 22px; }
+.btn {
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  padding: 10px 22px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--focus); border-color: var(--focus); color: #14060a; }
+.btn.primary:hover { filter: brightness(1.1); }
+
+.stats { margin-top: 20px; font-size: 12px; color: var(--muted); }
+.stats span { color: var(--fg); font-weight: bold; }

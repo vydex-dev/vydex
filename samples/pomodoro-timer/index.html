@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pomodoro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-mode="focus">
+    <main class="card">
+      <div class="modes">
+        <button data-set="focus" class="mode active">Focus 25</button>
+        <button data-set="short" class="mode">Break 5</button>
+        <button data-set="long" class="mode">Long 15</button>
+      </div>
+
+      <div id="time" class="time">25:00</div>
+      <div class="ring"><div id="bar" class="bar"></div></div>
+
+      <div class="controls">
+        <button id="toggle" class="btn primary">Start</button>
+        <button id="reset" class="btn">Reset</button>
+      </div>
+
+      <p class="stats">
+        today: <span id="today">0</span> pomodoros · total: <span id="total">0</span>
+      </p>
+    </main>
+    <script src="timer.js"></script>
+  </body>
+</html>

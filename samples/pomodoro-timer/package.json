@@ -1,0 +1,8 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "Minimal pomodoro timer with break cycles, daily stats and a completion beep. Zero dependencies.",
+  "private": true,
+  "keywords": ["pomodoro", "timer", "productivity", "focus", "vanilla-js"],
+  "license": "MIT"
+}
